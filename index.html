@@ -3,54 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GINA FASHION - أرقى ماركات مصرية</title>
+  <title>GINA FASHION - الأناقة مش بس ستايل</title>
   <link rel="icon" href="https://i.ibb.co/rgwBrmJ/gina-logo.jpg">
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900&family=Playfair+Display:wght@900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Playfair+Display:wght@900&display=swap');
 
-    :root{--gold:#d4af37;--dark:#000}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Cairo',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
-    body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#111,#000);background-size:400%;animation:bg 20s ease infinite;z-index:-2}
-    @keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    body{
+      font-family:'Cairo',sans-serif;
+      background:#000;
+      color:#fff;
+      overflow-x:hidden;
+      cursor:none;
+    }
 
-    header{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
-    .logo{width:220px;height:220px;border-radius:50%;border:8px solid var(--gold);object-fit:cover;animation:float 6s ease-in-out infinite,glow 3s infinite;box-shadow:0 0 100px rgba(212,175,55,.6)}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
-    @keyframes glow{0%{box-shadow:0 0 100px rgba(212,175,55,.6)}50%{box-shadow:0 0 160px var(--gold)}}
+    /* كورسور مخصص ذهبي لامع */
+    body::after{
+      content:'';position:fixed;width:30px;height:30px;
+      background:radial-gradient(circle,#d4af37 10%,transparent 70%);
+      border-radius:50%;pointer-events:none;z-index:9999;
+      transform:translate(-50%,-50%);transition:all .05s;
+    }
 
-    h1{font-family:'Playfair Display',serif;font-size:7.5rem;margin:2rem 0;background:linear-gradient(90deg,#fff,var(--gold),#fff);background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shine 6s linear infinite}
-    @keyframes shine{to{background-position:300%}}
+    /* خلفية فضائية فخمة + جزيئات ذهبية + موجات */
+    .bg{
+      position:fixed;top:0;left:0;width:100%;height:100%;z-index:-3;
+      background:radial-gradient(circle at 30% 30%,#1a0033 0%,#000 50%);
+    }
+    .wave{
+      position:fixed;bottom:0;left:0;width:200%;height:40vh;
+      background:linear-gradient(transparent,#d4af37);
+      animation:wave 12s linear infinite;
+      opacity:0.15;
+    }
+    @keyframes wave{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
+    .p{position:absolute;background:#d4af37;border-radius:50%;animation:fly 15s infinite linear}
 
-    .tagline{font-size:2.2rem;letter-spacing:5px;margin-bottom:4rem}
+    header{
+      min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;position:relative;
+    }
+    .logo{
+      width:260px;height:260px;border-radius:50%;
+      border:10px solid transparent;
+      background:linear-gradient(#000,#000) padding-box,
+                 linear-gradient(45deg,#d4af37,#ff6b6b,#4ecdc4,#45b7d1,#d4af37) border-box;
+      animation:spin 20s linear infinite, pulse 3s infinite;
+      box-shadow:0 0 120px #d4af37, inset 0 0 80px rgba(212,175,55,.4);
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes pulse{0%,100%{box-shadow:0 0 120px #d4af37}50%{box-shadow:0 0 200px #ff6b6b}}
 
-    .brands{max-width:1200px;margin:6rem auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem;padding:0 1rem}
-    .brand{background:rgba(255,255,255,0.05);padding:2rem;border-radius:20px;text-align:center;font-size:1.8rem;font-weight:900;color:var(--gold);border:2px solid transparent;transition:.4s;backdrop-filter:blur(8px)}
-    .brand:hover{border-color:var(--gold);transform:scale(1.2);box-shadow:0 0 60px rgba(212,175,55,.5)}
+    h1{
+      font-family:'Playfair Display',serif;font-size:9rem;margin:2rem 0;
+      background:linear-gradient(45deg,#d4af37,#ff6b6b,#4ecdc4,#ffe66d,#d4af37);
+      background-size:400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      animation:flow 8s linear infinite, pop 2s;
+    }
+    @keyframes flow{to{background-position:400%}}
+    @keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+
+    .tagline{
+      font-size:2.8rem;letter-spacing:8px;text-shadow:0 0 40px #d4af37;
+      animation:blink 4s infinite;
+    }
+    @keyframes blink{0%,100%{opacity:.8}50%{opacity:1;text-shadow:0 0 80px #fff}}
+
+    .brands{
+      max-width:1400px;margin:8rem auto;display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;padding:2rem;
+    }
+    .brand{
+      padding:2.5rem;font-size:2.2rem;font-weight:900;color:#d4af37;
+      background:rgba(212,175,55,.1);border-radius:30px;
+      border:3px solid transparent;background-clip:padding-box;
+      backdrop-filter:blur(15px);transition:all .6s;
+      text-shadow:0 0 30px #d4af37;
+    }
+    .brand:hover{
+      transform:translateY(-30px) scale(1.3);border-color:#d4af37;
+      box-shadow:0 0 100px #d4af37;background:rgba(212,175,55,.3);
+    }
 
     .contact-btn{
-      display:block;width:380px;margin:5rem auto;padding:1.6rem;
-      background:linear-gradient(45deg,var(--gold),#b8860b);color:#000;
-      font-size:2rem;font-weight:900;border-radius:60px;text-decoration:none;
-      box-shadow:0 0 80px rgba(212,175,55,.7);transition:.4s;
+      display:block;width:420px;margin:6rem auto;padding:2rem;
+      background:linear-gradient(45deg,#d4af37,#ff6b6b,#4ecdc4);
+      background-size:300%;color:#000;font-size:2.8rem;font-weight:900;
+      border-radius:80px;text-decoration:none;box-shadow:0 0 100px #d4af37;
+      animation:btnFlow 6s linear infinite, btnPulse 2s infinite;
     }
-    .contact-btn:hover{transform:scale(1.12);box-shadow:0 0 120px var(--gold)}
+    .contact-btn:hover{transform:scale(1.2);box-shadow:0 0 180px #ff6b6b}
+    @keyframes btnFlow{to{background-position:300%}}
+    @keyframes btnPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 
-    footer{text-align:center;padding:4rem 1rem;background:#000;font-size:1.2rem;color:#aaa}
+    footer{
+      text-align:center;padding:5rem;background:#000;
+      font-size:1.4rem;letter-spacing:3px;color:#d4af37;
+      text-shadow:0 0 20px #d4af37;
+    }
 
     @media(max-width:768px){
-      h1{font-size:5rem}
-      .logo{width:160px;height:160px}
-      .contact-btn{width:90%;font-size:1.7rem}
+      h1{font-size:5.5rem}
+      .logo{width:180px;height:180px}
+      .contact-btn{width:90%;font-size:2rem}
+      .brand{font-size:1.8rem}
     }
   </style>
 </head>
 <body>
 
+  <div class="bg"></div>
+  <div class="wave"></div>
+  <div class="particles" id="p"></div>
+
   <header>
-    <img src="https://i.ibb.co/rgwBrmJ/gina-logo.jpg" alt="GINA FASHION" class="logo">
+    <img src="https://i.ibb.co/rgwBrmJ/gina-logo.jpg" alt="GINA" class="logo">
     <h1>GINA FASHION</h1>
-    <p class="tagline">أرقى ماركات مصرية بأفضل الأسعار</p>
+    <p class="tagline">الأناقة مش بس ستايل… ده هويتك</p>
   </header>
 
   <div class="brands">
@@ -64,14 +135,36 @@
     <div class="brand">Cottonil</div>
   </div>
 
-  <!-- زر يفتح الإيميل مباشرة -->
   <a href="mailto:kirogaming4120@gmail.com" class="contact-btn">
-    تواصل معانا
+    تواصل معانا دلوقتي
   </a>
 
   <footer>
-    <p>©2025 TheRealVenom. All Rights Reserved</p>
+    ©2025 TheRealVenom. All Rights Reserved
   </footer>
 
+  <script>
+    // كورسور مخصص
+    document.addEventListener('mousemove', e => {
+      document.body.style.setProperty('--x', e.clientX + 'px');
+      document.body.style.setProperty('--y', e.clientY + 'px');
+      document.body.style.setProperty('cursor', 'none');
+    });
+    document.body.style.setProperty('--x', '50vw');
+    document.body.style.setProperty('--y', '50vh');
+
+    // جزيئات ذهبية
+    const p = document.getElementById('p');
+    for(let i=0;i<120;i++){
+      const e=document.createElement('div');
+      e.classList.add('p');
+      e.style.width=e.style.height=Math.random()*7+3+'px';
+      e.style.left=Math.random()*100+'%';
+      e.style.top=Math.random()*100+'%';
+      e.style.animationDelay=Math.random()*15+'s';
+      e.style.animationDuration=Math.random()*20+15+'s';
+      p.appendChild(e);
+    }
+  </script>
 </body>
-</html>
+  </html>
